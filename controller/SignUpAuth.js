@@ -1,5 +1,5 @@
 
-const SignUpmodel = require("../models/Signup");
+const user = require("../models/User");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
@@ -8,7 +8,8 @@ exports.signupAuth = async (req, res) => {
         const { Name, Email, Password } = req.body;
 
         // checking the user exist or not 
-        const emailExist=await SignUpmodel.findOne({Email});
+        const emailExist=await user.findOne({Email});
+        console.log(emailExist);
         if(emailExist){
             return res.status(500).json({
                 success:false,
@@ -21,7 +22,7 @@ exports.signupAuth = async (req, res) => {
             const hashedPassword = await bcrypt.hash(Password, saltRounds);
 
         // Create a new user record
-        const response = await SignUpmodel.create({ Name, Email, Password: hashedPassword });
+        const response = await user.create({ Name, Email, Password: hashedPassword });
 
         return res.status(200).json({
             success: true,
