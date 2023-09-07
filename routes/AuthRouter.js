@@ -14,7 +14,7 @@ router.post("/signup",signupAuth);
 
 // student user protected route 
 router.get("/student",Auth,Student,(req,res)=>{
-    res.status(200).json({
+    return res.status(200).json({
         succes:true,
         message:"welcome to Student DashBoard"
     })

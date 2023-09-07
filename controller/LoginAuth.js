@@ -5,10 +5,12 @@ const saltRounds = 10;
 require("dotenv").config();
 const cookie = require('cookie');
 exports.login =async(req,res)=>{
+
+
 const JWT_Secrete=process.env.JWT_Secrete;
 try{
  const {Email,Password}= req.body;
-  console.log(Email);
+//   console.log(Email);
 //  checking is there any field is empty 
 if( !Email || !Password){
        
@@ -47,7 +49,8 @@ else{
 
             const payload={
                 Name:User.Name,
-                Email:User.Email
+                Email:User.Email,
+                Role:User.Role
             }
 
             // password checked 
